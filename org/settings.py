@@ -20,8 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-
+try:
+    SECRET_KEY = os.environ['SECRET_KEY']
+except KeyError:
+    SECRET_KEY = 'NFKj29c1298jf98vj398U(*1988f2!f9*!3)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -122,7 +124,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'Darik.pc@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+try:
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+except KeyError:
+    pass
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -135,12 +140,7 @@ PAYPAL_TEST = False
 STATIC_URL = '/static/'
 
 
-<<<<<<< HEAD
+
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-=======
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
->>>>>>> 'views.py'
