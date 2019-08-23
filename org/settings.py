@@ -135,6 +135,12 @@ PAYPAL_TEST = False
 STATIC_URL = '/static/'
 
 
+<<<<<<< HEAD
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+=======
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
+>>>>>>> 'views.py'
