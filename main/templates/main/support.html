@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<h1 class="text-center mb-3">Welcome to 4-Organizer support!</h1>
+
+<h3 class="text-center mb-3">Have a problem? Feel free to <a href="{% url 'contact-us' %}">contact us</a>!</h3>
+<hr class="col-12 col-md-4">
+<h1 class="text-center mt-3">Most popular guides</h1>
+<h5 class="text-center mb-3"><a href="{% url 'install' %}">How to install 4-Organizer</a></h5>
+<h5 class="text-center mb-3"><a href="{% url 'select-scan' %}">How to select scan</a></h5>
+<hr class="col-12 col-md-4">
+<h1 class="text-center mb-3 mt-5">FAQ</h1>
+
+
+
+<div class="text-center">
+<div>
+<p>
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#forever" role="button" aria-expanded="false">
+    Is 'Forever' plan really forever?
+  </a>
+</p>
+<div class="collapse mb-3" id="forever">
+  <div class="card card-body">
+    Yes, it's forever-forever!
+  </div>
+</div>
+</div>
+
+<div>
+<p>
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#license" role="button" aria-expanded="false">
+    Will I receive updates?
+  </a>
+</p>
+<div class="collapse mb-3" id="license">
+  <div class="card card-body">
+    You will receive updates as long as your license is valid.
+  </div>
+</div>
+</div>
+
+
+<div>
+<p>
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#contact" role="button" aria-expanded="false">
+    I've got some technical problem, what do I need to do?
+  </a>
+</p>
+<div class="collapse mb-3" id="contact">
+  <div class="card card-body">
+    <a href="{% url 'contact-us' %}">Please contact us</a>
+  </div>
+</div>
+</div>
+
+
+<div>
+<p>
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#expires" role="button" aria-expanded="false">
+  What will happen after the license expires?
+  </a>
+</p>
+<div class="collapse mb-2" id="expires">
+  <div class="card card-body">
+    4-Organizer will deactivate. If you'll buy another license, you can activate it again.
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
