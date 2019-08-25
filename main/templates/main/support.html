@@ -2,10 +2,17 @@
 
 
 {% block content %}
-
+<style>
+  a {
+  color: #4989cc;
+}
+a.btn {
+  background-color: #4989cc!important;
+}
+</style>
 <h1 class="text-center mb-3">Welcome to 4-Organizer support!</h1>
 
-<h3 class="text-center mb-3">Have a problem? Feel free to <a href="{% url 'contact-us' %}">contact us</a>!</h3>
+<h3 class="text-center mb-3">Have a problem? Feel free to <a href="{% url 'contact-us' %}">contact us!</a></h3>
 <hr class="col-12 col-md-4">
 <h1 class="text-center mt-3">Most popular guides</h1>
 <h5 class="text-center mb-3"><a href="{% url 'install' %}">How to install 4-Organizer</a></h5>

@@ -222,8 +222,8 @@ def key(request, id, id2, license, email):
 
     license = decode_str(license.encode(), key)
     email = decode_str(email.encode(), key)
-    license_key = Key.objects.all().filter(key__icontains=license)
-    license_key = license_key.filter(email__icontains=email)
+    license_key = Key.objects.all().filter(key__icontains=license.lower())
+    license_key = license_key.filter(email__icontains=email.lower())
     if len(license_key) >= 1:
         license_key = license_key[0]
     else:
