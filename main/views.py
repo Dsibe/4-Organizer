@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 import datetime
+from django.db.models import Q
 from uuid import uuid4
 import base64
 from django.core.mail import send_mail
@@ -199,15 +200,12 @@ def install(request):
     return render(request, 'main/install.html')
 
 def decode_str(string, key):
-    try:
-        f = Fernet(key)
-        return f.decrypt(string).decode()
-    except:
-        return 'Error'
+    f = Fernet(key)
+    return f.decrypt(string).decode()
 
 def key(request, id, id2, license, email):
     to_return = f'{id} {id2} {license} {email}'
-    id = id.encode() # Convert to type bytes
+    id = id.encode()
     salt = id2.encode()
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
@@ -217,13 +215,9 @@ def key(request, id, id2, license, email):
         backend=default_backend()
     )
     key = base64.urlsafe_b64encode(kdf.derive(id))
-
-
-
-    license = decode_str(license.encode(), key)
-    email = decode_str(email.encode(), key)
-    license_key = Key.objects.all().filter(key__icontains=license.lower())
-    license_key = license_key.filter(email__icontains=email.lower())
+    license = decode_str(license.encode(), key).lower()
+    email = decode_str(email.encode(), key).lower()
+    license_key = Key.objects.all().filter(Q(key=license) & Q(email=email))
     if len(license_key) >= 1:
         license_key = license_key[0]
     else:
