@@ -157,7 +157,7 @@ def main(request):
                     send_mail(f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4-Organizer.com/main', 'Darik.pc@gmail.com', [key.email])
                     key.delete()
 
-    return render(request, 'main/main.html')
+    return render(request, 'main/description.html')
 
 def start(request):
     return render(request, 'main/start.html')
@@ -179,7 +179,7 @@ def contact_us(request):
     return render(request, r'main/contact_us.html', context={'form': form})
 
 def description(request):
-    return render(request, 'main/description.html')
+    return render(request, 'main/main.html')
 
 def support(request):
     return render(request, 'main/support.html')
