@@ -28,7 +28,7 @@ except KeyError:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', '4organizer.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', 'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com']
 
 
 # Application definition
