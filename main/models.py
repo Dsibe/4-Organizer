@@ -12,6 +12,8 @@ class Key(models.Model):
         return str(self.key)
 
     def save(self, *args, **kwargs):
-        self.key = self.key.lower()
-        self.email = self.email.lower()
+        if self.key:
+            self.key = self.key.lower()
+        if self.email:
+            self.email = self.email.lower()
         super(Key, self).save(*args, **kwargs)
