@@ -154,7 +154,7 @@ def main(request):
                 if period == '0' or period == 0:
                     pass
                 elif current_date >= date:
-                    send_mail(f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4-Organizer.com/main', 'Darik.pc@gmail.com', [key.email])
+                    send_mail(subject='Your 4-Organizer license', message=f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4-Organizer.com/main', from_email='Mail.4_organizer@yahoo.com', recipient_list=[key.email], fail_silently=False)
                     key.delete()
 
     return render(request, 'main/description.html')
@@ -173,7 +173,7 @@ def contact_us(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            send_mail(f'From {name}, email: {email}', f'{message}', 'Darik.pc@gmail.com', ['dariyshereta@aol.com'])
+            send_mail(f'From {name}, email: {email}', f'{message}', 'Mail.4_organizer@yahoo.com', ['dariyshereta@aol.com'])
             return HttpResponse('You message has been sended succesfully')
 
     return render(request, r'main/contact_us.html', context={'form': form})

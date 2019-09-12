@@ -121,13 +121,13 @@ USE_TZ = True
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'Darik.pc@gmail.com'
+EMAIL_HOST_USER = 'mail.4_organizer@yahoo.com'
 try:
     EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 except KeyError:
-    pass
+    EMAIL_HOST_PASSWORD = 'cX@?p-VHU-96.*P'
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
