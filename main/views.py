@@ -83,8 +83,8 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-
-
+    print(ipn_obj.payment_status)
+    print(dir(ipn_obj))
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
