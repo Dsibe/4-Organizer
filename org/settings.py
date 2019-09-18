@@ -124,15 +124,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mail.4_organizer@yahoo.com'
-# try:
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-# except KeyError:
-
+try:
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+except KeyError:
+    EMAIL_HOST_PASSWORD = 'cX@?p-VHU-96.*P'
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 PAYPAL_RECEIVER_EMAIL = 'abt.company@aol.com'
-PAYPAL_TEST = False
+PAYPAL_TEST = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
