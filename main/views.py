@@ -83,7 +83,7 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    send_mail('1', f'{dir(ipn_obj)}|{ipn_obj.payment_status}', 'Darik.pc@gmail.com', ['darik.pc@gmail.com'])
+    send_mail('1', f'{dir(ipn_obj)}|{ipn_obj.payment_status}', 'mail.4_organizer@yahoo.com', ['Mail.4_organizer@yahoo.com'])
 
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
@@ -99,13 +99,13 @@ def show_me_the_money(sender, **kwargs):
         key_obj.period = period
         key_obj.save()
 
-        send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Darik.pc@gmail.com', [email])
+        send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Mail.4_organizer@yahoo.com', [email])
 
         if key_obj.period != '0' or key_obj.period != 0:
             chance = randint(1, 100)
             if chance == 1:
                 prize = 'Extra 1 Month'
-                send_mail('You have won extra month for you license!', f'We have added 1 month you your current license. Now your license period is: {int(key_obj.period) + 1} months', 'Darik.pc@gmail.com', [email])
+                send_mail('You have won extra month for you license!', f'We have added 1 month you your current license. Now your license period is: {int(key_obj.period) + 1} months', 'Mail.4_organizer@yahoo.com', [email])
                 key_obj.period = str(int(key_obj.period) + 1)
                 key_obj.save()
             else:
