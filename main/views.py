@@ -51,7 +51,7 @@ def buy(request):
             # print(period, price)
 
             paypal_dict = {
-                "business": 'abt.company-facilitator@aol.com',
+                "business": 'abt.company@aol.com',
                 "amount": price,
                 "item_name": f"4-Organizer {period}",
                 "currency_code": "USD",
