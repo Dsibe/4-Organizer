@@ -26,7 +26,7 @@ except KeyError:
     SECRET_KEY = 'NFKj29c1298jf98vj398U(*1988f2!f9*!3)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', 'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com']
 
@@ -124,15 +124,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mail.4_organizer@yahoo.com'
-try:
-    EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-except KeyError:
-    EMAIL_HOST_PASSWORD = 'cX@?p-VHU-96.*P'
+
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 PAYPAL_RECEIVER_EMAIL = 'abt.company@aol.com'
-PAYPAL_TEST = True
+PAYPAL_TEST = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

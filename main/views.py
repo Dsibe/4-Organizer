@@ -83,8 +83,8 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    send_mail('1', f'{dir(ipn_obj)}|{ipn_obj.payment_status}', 'mail.4_organizer@yahoo.com', ['Mail.4_organizer@yahoo.com'])
 
+    print(ipn_obj.payment_status, dir(ipn_obj))
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
@@ -111,7 +111,7 @@ def show_me_the_money(sender, **kwargs):
             else:
                 prize = 'nothing, bad luck!'
             return render(request, 'main/lottery.html', context={'prize': prize})
-        return render(request, 'main/payment_done.html', context={'key_obj': key_obj})
+        return render(request, 'main/payment_done.html', context={'key_obj': key_obj)
 
     else:
         print("Failed")
