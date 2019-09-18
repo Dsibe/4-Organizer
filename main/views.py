@@ -111,7 +111,7 @@ def show_me_the_money(sender, **kwargs):
             else:
                 prize = 'nothing, bad luck!'
             return render(request, 'main/lottery.html', context={'prize': prize})
-        return render(request, 'main/payment_done.html', context={'key_obj': key_obj)
+        return render(request, 'main/payment_done.html', context={'key_obj': key_obj})
 
     else:
         print("Failed")
