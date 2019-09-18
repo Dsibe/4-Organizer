@@ -83,8 +83,8 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    print(ipn_obj.payment_status)
-    print(dir(ipn_obj))
+    send_mail('1', f'{dir(ipn_obj)}|{ipn_obj.payment_status}', 'Darik.pc@gmail.com', ['darik.pc@gmail.com'])
+
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
