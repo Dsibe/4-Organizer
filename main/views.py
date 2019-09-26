@@ -3,6 +3,8 @@ import datetime
 from django.db.models import Q
 from uuid import uuid4
 import base64
+import datetime
+import calendar
 from django.core.mail import send_mail
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
@@ -22,20 +24,20 @@ from .models import Key
 import smtplib
 import ssl
 
-def buy(request):
+def buy(request, period_selected):
     if request.method == 'GET':
-        form = PayForm
+        form = PayForm(initial={'period': period_selected})
         return render(request, "main/payment.html", context={'payform': form})
     else:
         form = PayForm(request.POST)
         if form.is_valid():
             data = form.data
             email = data['email']
-            key = Key(email=email)
+            period = data['period']
+            fullname = data['fullname']
+            key = Key(email=email, period=period, fullname=fullname)
             key.save()
             host = request.get_host()
-
-            period = data['period']
 
             if period == '1':
                 price = '4.99'
@@ -48,10 +50,10 @@ def buy(request):
             elif period == '0':
                 price = '499.99'
 
-            # print(period, price)
+            print(period, price)
 
             paypal_dict = {
-                "business": 'abt.company-facilitator@aol.com',
+                "business": 'abt.company@aol.com',
                 "amount": price,
                 "item_name": f"4-Organizer {period}",
                 "currency_code": "USD",
@@ -59,7 +61,7 @@ def buy(request):
                 "notify_url": "http://{}{}".format(host, reverse("paypal-ipn")),
                 "return_url": "http://{}{}".format(host, reverse("payment_done")),
                 "cancel_return": "http://{}{}".format(host, reverse("payment_cancelled")),
-                "custom": f"{period}, {email}",  # Custom command to correlate to some function later (optional)
+                "custom": f"{period}, {email}",
             }
 
             # Create the instance.
@@ -75,16 +77,14 @@ def payment_done(request):
     return render(request, "main/payment_done.html")
 
 
-
 @csrf_exempt
 def payment_canceled(request):
-    return HttpResponse("Payment Cancelled")
+    return render(request, 'main/payment_cancelled.html')
 
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-
-
+    print(ipn_obj.payment_status)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
@@ -93,32 +93,21 @@ def show_me_the_money(sender, **kwargs):
         period, email = ipn_obj.custom, ipn_obj.custom
         period = period[:period.find(',')]
         email = email[email.find(' ')+1:]
-        key_obj = Key.objects.get(email=email)
-        key_obj.key = key
-        key_obj.date = date
-        key_obj.period = period
-        key_obj.save()
-
-        send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Darik.pc@gmail.com', [email])
-
-        if key_obj.period != '0' or key_obj.period != 0:
-            chance = randint(1, 100)
-            if chance == 1:
-                prize = 'Extra 1 Month'
-                send_mail('You have won extra month for you license!', f'We have added 1 month you your current license. Now your license period is: {int(key_obj.period) + 1} months', 'Darik.pc@gmail.com', [email])
-                key_obj.period = str(int(key_obj.period) + 1)
-                key_obj.save()
-            else:
-                prize = 'nothing, bad luck!'
-            return render(request, 'main/lottery.html', context={'prize': prize})
-        return render(request, 'main/payment_done.html', context={'key_obj': key_obj})
+        print(f'|{period}|{email}|')
+        try:
+            key_obj = Key.objects.filter(email=email, period=period)[0]
+            key_obj.key = key
+            key_obj.date = date
+            key_obj.save()
+            send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Mail.4_organizer@yahoo.com', [email])
+        except IndexError:
+            pass
 
     else:
         print("Failed")
 
 
 valid_ipn_received.connect(show_me_the_money)
-
 invalid_ipn_received.connect(show_me_the_money)
 
 def int_from_date(date):
@@ -129,8 +118,7 @@ def int_from_date(date):
     date = current_date_edit
     return int(date)
 
-import datetime
-import calendar
+
 
 def add_months(sourcedate, months):
     month = sourcedate.month - 1 + months
@@ -154,10 +142,10 @@ def main(request):
                 if period == '0' or period == 0:
                     pass
                 elif current_date >= date:
-                    send_mail(subject='Your 4-Organizer license', message=f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4-Organizer.com/main', from_email='Mail.4_organizer@yahoo.com', recipient_list=[key.email], fail_silently=False)
+                    send_mail(subject='Your 4-Organizer license', message=f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4Organizer.com/buy', from_email='Mail.4_organizer@yahoo.com', recipient_list=[key.email], fail_silently=False)
                     key.delete()
 
-    return render(request, 'main/description.html')
+    return render(request, 'main/main.html')
 
 def start(request):
     return render(request, 'main/start.html')
@@ -173,22 +161,16 @@ def contact_us(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            send_mail(f'From {name}, email: {email}', f'{message}', 'Mail.4_organizer@yahoo.com', ['dariyshereta@aol.com'])
+            send_mail(f'From {name}, email: {email}', f'{message}', 'Mail.4_organizer@yahoo.com', ['dariyshereta@aol.com', 'darik.pc@gmail.com'])
             return HttpResponse('You message has been sended succesfully')
 
     return render(request, r'main/contact_us.html', context={'form': form})
 
-def description(request):
-    return render(request, 'main/main.html')
+def pricing(request):
+    return render(request, 'main/pricing.html')
 
 def support(request):
     return render(request, 'main/support.html')
-
-def lottery(request):
-    return render(request, 'main/lottery.html')
-
-def lottery_prize(request, prize):
-    return render(request, 'main/lottery_prize.html', context={'prize': prize})
 
 def terms(request):
     return render(request, 'main/terms.html')
@@ -223,3 +205,11 @@ def key(request, id, id2, license, email):
     else:
         to_return = 'error'
     return HttpResponse(to_return)
+
+@csrf_exempt
+def mail(request):
+    if request.method == 'POST':
+        email = request.POST.get('email_newsletter', '')
+        sign_up_email = Email.objects.create(email=email)
+        sign_up_email.save()
+        return HttpResponse('Signed up succesfully')

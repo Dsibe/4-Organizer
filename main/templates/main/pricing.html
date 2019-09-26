@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<style>
+  img {
+    height: 300px;
+  }
+  a {
+    color: #4989cc;
+  }
+
+
+</style>
+
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Pricing:</h1>
+  <p class="lead"></p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center border mt-5 mr-1" style="border-radius: 10px; padding: 20px;">
+      <a href="{% url 'buy' 1 %}" style="text-decoration: none;">
+        <img class="text-center" src="http://4-organizer-files.000webhostapp.com/1.png">
+        <h1 class="text-center">1 Month license<br>$4.99</h1>
+      </a>
+    </div>
+
+
+    <div class="col text-center border mt-5 mr-1" style="border-radius: 10px; padding: 20px;">
+      <a href="{% url 'buy' 3 %}" style="text-decoration: none;">
+        <img class="text-center" src="http://4-organizer-files.000webhostapp.com/3.png">
+        <h1 class="text-center">3 Months license<br>$12.99</h1>
+      </a>
+    </div>
+
+
+  <div class="col text-center border mt-5" style="border-radius: 10px; padding: 20px;">
+    <a href="{% url 'buy' 6%}" style="text-decoration: none;">
+      <img class="text-center" src="http://4-organizer-files.000webhostapp.com/6.png">
+      <h1 class="text-center">6 Months license<br>$19.99</h1>
+    </a>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col text-center border mt-5 mr-1" style="border-radius: 10px; padding: 20px;">
+    <a href="{% url 'buy' 12 %}" style="text-decoration: none;">
+      <img class="text-center" src="http://4-organizer-files.000webhostapp.com/12.png">
+      <h1 class="text-center">1 Year license<br>$24.99</h1>
+    </a>
+  </div>
+
+
+  <div class="col text-center border mt-5" style="border-radius: 10px; padding: 20px;">
+    <a href="{% url 'buy' 0 %}" style="text-decoration: none;">
+      <img class="text-center" src="http://4-organizer-files.000webhostapp.com/bigboard.png">
+      <h1 class="text-center"><strong>Forever license</strong> - $499.99</h1>
+    </a>
+  </div>
+</div>
+</div>
+  </div>
+
+{% endblock %}

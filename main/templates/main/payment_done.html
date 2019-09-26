@@ -3,12 +3,9 @@
 
 {% block content %}
 
-{% if key_obj %}
-
 <h1 style="text-align: center;">You have successfully bought 4-Organizer!</h1>
-<h2 style="text-align: center;">Your key (save it and keep it in secret): <strong>{{ key_obj.key }}</strong></h2>
-<h3 style="text-align: center;">We've also send this key to your email</h3>
-<h1 style="text-align: center;">Now, please visit <a href="{% url 'activation-guide' %}">Activation Guide</a></h1>
-{% endif %}
+<h2 style="text-align: center;">Your key has been sent to <strong>your email. </strong>Please wait up to 15 min to receive it.</h2>
+<hr class="col-12 col-md-6">
+<h1 style="text-align: center;">Now, please visit <a href="{% url 'install' %}">installation guide</a></h1>
 
 {% endblock %}

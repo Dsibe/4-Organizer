@@ -52,11 +52,24 @@ a.btn {
 
 <div>
 <p>
-  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg text-wrap" data-toggle="collapse" href="#contact" role="button" aria-expanded="false">
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#licenseForgot" role="button" aria-expanded="false">
+    I've forgot my license key, what do I have to do?
+  </a>
+</p>
+<div class="collapse mb-3" id="licenseForgot">
+  <div class="card card-body">
+    <a href="{% url 'contact-us' %}">Please contact us.</a>
+  </div>
+</div>
+</div>
+
+<div>
+<p>
+  <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg text-wrap" data-toggle="collapse" href="#tech" role="button" aria-expanded="false">
     I've got some technical problem, what do I need to do?
   </a>
 </p>
-<div class="collapse mb-3" id="contact">
+<div class="collapse mb-3" id="tech">
   <div class="card card-body">
     <a href="{% url 'contact-us' %}">Please contact us</a>
   </div>
