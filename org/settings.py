@@ -14,7 +14,7 @@ except KeyError:
     SECRET_KEY = 'NFKj29c1298jf98vj398U(*1988f2!f9*!3)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', 'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com']
 
