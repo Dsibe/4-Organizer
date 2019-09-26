@@ -84,7 +84,6 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    print(ipn_obj.payment_status)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
@@ -93,7 +92,6 @@ def show_me_the_money(sender, **kwargs):
         period, email = ipn_obj.custom, ipn_obj.custom
         period = period[:period.find(',')]
         email = email[email.find(' ')+1:]
-        print(f'|{period}|{email}|')
         try:
             key_obj = Key.objects.filter(email=email, period=period)[0]
             key_obj.key = key
@@ -102,7 +100,6 @@ def show_me_the_money(sender, **kwargs):
             send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Mail.4_organizer@yahoo.com', [email])
         except IndexError:
             pass
-
     else:
         print("Failed")
 
