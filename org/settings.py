@@ -14,7 +14,7 @@ except KeyError:
     SECRET_KEY = '*r2tx+7e320$+^fv9g6f^*d8a+rbyu@xof(u+oz@3ve)m3d7^g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', 'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com']
 
@@ -110,10 +110,10 @@ USE_L10N = True
 USE_TZ = True
 
 X_FRAME_OPTIONS = 'DENY'
-CSRF_USE_SESSIONS = True
+# CSRF_USE_SESSIONS = True
 # SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.yahoo.com'
