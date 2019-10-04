@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 try:
     SECRET_KEY = os.environ['SECRET_KEY']
 except KeyError:
-    SECRET_KEY = 'NFKj29c1298jf98vj398U(*1988f2!f9*!3)'
+    SECRET_KEY = '*r2tx+7e320$+^fv9g6f^*d8a+rbyu@xof(u+oz@3ve)m3d7^g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -23,6 +23,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml', '
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'users.apps.UsersConfig',
     'paypal.standard.ipn',
     'crispy_forms',
     'django.contrib.admin',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -107,13 +109,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+X_FRAME_OPTIONS = 'DENY'
+CSRF_USE_SESSIONS = True
+# SESSION_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mail.4_organizer@yahoo.com'
 
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -125,7 +132,8 @@ PAYPAL_TEST = False
 
 STATIC_URL = '/static/'
 
-
+LOGIN_REDIRECT_URL = 'profile'
+LOGIN_URL = 'login'
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

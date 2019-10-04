@@ -1,23 +1,15 @@
 from django.db import models
-
+from users.models import *
 
 class Key(models.Model):
     key = models.CharField(max_length=300, null=True, blank=True)
     date = models.CharField(max_length=100, null=True, blank=True)
     period = models.CharField(max_length=50, null=True, blank=True)
-    email = models.CharField(max_length=300, null=True, blank=True)
-    fullname = models.CharField(max_length=500, null=True, blank=True)
+    profile = models.OneToOneField(Profile, null=True, blank=True, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return str(self.key)
-
-    def save(self, *args, **kwargs):
-        if self.email:
-            self.email = self.email.lower()
-        if self.fullname:
-            self.fullname = self.fullname.lower()
-        # print(self.email, self.period, self.key, self.date)
-        super(Key, self).save(*args, **kwargs)
 
 
 class Email(models.Model):

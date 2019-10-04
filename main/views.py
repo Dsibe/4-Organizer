@@ -23,54 +23,7 @@ from paypal.standard.models import ST_PP_COMPLETED
 from .models import Key
 import smtplib
 import ssl
-
-def buy(request, period_selected):
-    if request.method == 'GET':
-        form = PayForm(initial={'period': period_selected})
-        return render(request, "main/payment.html", context={'payform': form})
-    else:
-        form = PayForm(request.POST)
-        if form.is_valid():
-            data = form.data
-            email = data['email']
-            period = data['period']
-            fullname = data['fullname']
-            key = Key(email=email, period=period, fullname=fullname)
-            key.save()
-            host = request.get_host()
-
-            if period == '1':
-                price = '4.99'
-            elif period == '3':
-                price = '12.99'
-            elif period == '6':
-                price = '19.99'
-            elif period == '12':
-                price = '24.99'
-            elif period == '0':
-                price = '499.99'
-
-            print(period, price)
-
-            paypal_dict = {
-                "business": 'abt.company@aol.com',
-                "amount": price,
-                "item_name": f"4-Organizer {period}",
-                "currency_code": "USD",
-                "invoice": f"{randint(1, 9999999)}",
-                "notify_url": "http://{}{}".format(host, reverse("paypal-ipn")),
-                "return_url": "http://{}{}".format(host, reverse("payment_done")),
-                "cancel_return": "http://{}{}".format(host, reverse("payment_cancelled")),
-                "custom": f"{period}, {email}",
-            }
-
-            # Create the instance.
-            form = PayPalPaymentsForm(initial=paypal_dict)
-            context = {"form": form}
-            return render(request, "main/payment.html", context)
-
-
-
+from users.forms import *
 
 @csrf_exempt
 def payment_done(request):
@@ -84,20 +37,23 @@ def payment_canceled(request):
 
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
+    print(ipn_obj.payment_status)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print("Received payment")
         date = str(datetime.datetime.now().date())
         key = uuid4()
 
-        period, email = ipn_obj.custom, ipn_obj.custom
+        period, username = ipn_obj.custom, ipn_obj.custom
         period = period[:period.find(',')]
-        email = email[email.find(' ')+1:]
+        username = username[username.find(' ')+1:]
         try:
-            key_obj = Key.objects.filter(email=email, period=period)[0]
+            user = User.objects.filter(username=username)[0]
+            user_profile = user.profile
+            key_obj = user_profile.key
             key_obj.key = key
             key_obj.date = date
             key_obj.save()
-            send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Mail.4_organizer@yahoo.com', [email])
+            # send_mail('You have succesfully bought 4-Organizer', f'Now you can proceed to installation instruction (4-Organizer.com/install). Your key, keep it in secret: {key}', 'Mail.4_organizer@yahoo.com', [email])
         except IndexError:
             pass
     else:
@@ -182,8 +138,8 @@ def decode_str(string, key):
     f = Fernet(key)
     return f.decrypt(string).decode()
 
-def key(request, id, id2, license, email):
-    to_return = f'{id} {id2} {license} {email}'
+def key(request, id, id2, license, username):
+    to_return = f'{id} {id2} {license} {username}'
     id = id.encode()
     salt = id2.encode()
     kdf = PBKDF2HMAC(
@@ -194,12 +150,14 @@ def key(request, id, id2, license, email):
         backend=default_backend()
     )
     key = base64.urlsafe_b64encode(kdf.derive(id))
-    license = decode_str(license.encode(), key).lower()
-    email = decode_str(email.encode(), key).lower()
-    license_key = Key.objects.all().filter(Q(key=license) & Q(email=email))
-    if len(license_key) >= 1:
-        license_key = license_key[0]
-    else:
+    try:
+        license = decode_str(license.encode(), key).lower()
+        username = decode_str(username.encode(), key).lower()
+        user = User.objects.filter(username__icontains=username)[0]
+        key_obj = user.profile.key
+        if not key_obj.key:
+            to_return = 'error'
+    except:
         to_return = 'error'
     return HttpResponse(to_return)
 

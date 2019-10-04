@@ -5,14 +5,17 @@
 
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148817240-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148817240-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-148817240-1');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148817240-1');
+  </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -79,11 +82,30 @@ display: inline!important;
     <a class="navbar-brand mx-auto" href="{% url 'main' %}">{% include 'main/logo.html' %}</a>
     <div class="">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item mr-2">
-          <a class="text-sm-center nav-link" style="color: #181b20; font-weight: 600" href="{% url 'support' %}">4-Organizer Support</a>
+        <li class="nav-item dropdown">
+          <a style="color: #181b20!important; font-weight: 600;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            4-Organizer Support
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'support' %}">4-Organizer Support</a>
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'contact-us' %}">Contact Us</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="text-sm-center nav-link" style="color: #181b20; font-weight: 600" href="{% url 'contact-us' %}">Contact us</a>
+        <li class="nav-item dropdown">
+          <a style="color: #181b20!important; font-weight: 600;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile
+          </a>
+          {% if user.is_authenticated %}
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'profile' %}">My profile</a>
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </div>
+          {% else %}
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'register' 0 %}">Sign up</a>
+            <a style="color: #181b20!important; font-weight: 600;" class="dropdown-item" href="{% url 'login' %}">Login</a>
+          </div>
+          {% endif %}
         </li>
       </ul>
     </div>
@@ -146,8 +168,8 @@ display: inline!important;
             <h5 style="color: #4989cc" class="text-center">Email, same as entered for the license:</h5>
             <input class="form-control mb-3 mt-2" name="email_newsletter" placeholder="email@company.com">
             <div class="text-center">
-            <button type="submit" class="btn btn-info col-12 col-md-3" style="background-color: #4989cc">Sign up</button>
-          </div>
+              <button type="submit" class="btn btn-info col-12 col-md-3" style="background-color: #4989cc">Sign up</button>
+            </div>
           </form>
         </div>
       </div>
