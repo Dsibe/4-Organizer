@@ -150,14 +150,16 @@ def key(request, id, id2, license, username):
         backend=default_backend()
     )
     key = base64.urlsafe_b64encode(kdf.derive(id))
-    try:
-        license = decode_str(license.encode(), key).lower()
-        username = decode_str(username.encode(), key).lower()
-        user = User.objects.filter(username__icontains=username)[0]
-        key_obj = user.profile.key
-        if not key_obj.key:
-            to_return = 'error'
-    except:
+
+    license = decode_str(license.encode(), key).lower()
+    username = decode_str(username.encode(), key).lower()
+    user = User.objects.filter(username=username).last()
+    profile = user.profile
+    key = Key.objects.filter(key=license, profile_id=profile.id).last()
+    print('User: ', user)
+    print('Profile', profile)
+    print('Key: ', key)
+    if not key.key:
         to_return = 'error'
     return HttpResponse(to_return)
 
