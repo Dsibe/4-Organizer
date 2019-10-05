@@ -67,7 +67,7 @@ def profile(request):
             else:
                 period_paypal = period + ' months'
             paypal_dict = {
-                "business": 'abt.company-facilitator@aol.com',
+                "business": 'abt.company@aol.com',
                 "amount": price,
                 "item_name": f"4-Organizer {period_paypal}",
                 "currency_code": "USD",

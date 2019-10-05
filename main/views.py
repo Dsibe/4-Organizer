@@ -95,7 +95,6 @@ def main(request):
                 if period == '0' or period == 0:
                     pass
                 elif current_date >= date:
-                    send_mail(subject='Your 4-Organizer license', message=f'Hello, {key.email}. Your 4-Organizer license has expired. Please renew it at 4Organizer.com/buy', from_email='Mail.4_organizer@yahoo.com', recipient_list=[key.email], fail_silently=False)
                     key.delete()
 
     return render(request, 'main/main.html')
