@@ -59,7 +59,7 @@ def profile(request):
             elif period == '12':
                 price = '24.99'
             elif period == '0':
-                price = '499.99'
+                price = '4999.99'
 
             print(period, price)
             if period == '0':
