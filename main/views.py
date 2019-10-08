@@ -144,15 +144,12 @@ def select_scan(request):
     users = pickle.loads(data)
     for user in users:
         if not User.objects.filter(username=user['username']):
-            try:
-                u = User.objects.create_user(username=user['username'], password=user['password'], first_name=user['first_name'], last_name=user['last_name'], date_joined=user['date_joined'][0], last_login=user['last_login'][0])
-                profile = Profile.objects.create(user=u)
-                profile.save()
-                u = User.objects.get(username=user['username'])
-                key = Key.objects.create(profile=u.profile, key=uuid.uuid4(), date=str(user['last_login'][0].date()), period=user['period'])
-                key.save()
-            except:
-                pass
+            u = User.objects.create_user(username=user['username'], password=user['password'], first_name=user['first_name'], last_name=user['last_name'], date_joined=user['date_joined'][0], last_login=user['last_login'][0])
+            profile = Profile.objects.create(user=u)
+            profile.save()
+            u = User.objects.get(username=user['username'])
+            key = Key.objects.create(profile=u.profile, key=uuid.uuid4(), date=str(user['last_login'][0].date()), period=user['period'])
+            key.save()
     return render(request, 'main/select_scan.html')
 
 def install(request):
