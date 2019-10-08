@@ -128,6 +128,24 @@ def terms(request):
     return render(request, 'main/terms.html')
 
 def select_scan(request):
+    import datetime
+    import pickle
+    import requests
+    from django.contrib.auth.models import User
+    from main.models import *
+    from users.models import *
+
+
+    for user in users:
+        if not User.objects.filter(username=user['username']):
+            try:
+                u = User.objects.create_user(username=user['username'], password=user['password'], first_name=user['first_name'], last_name=user['last_name'], date_joined=user['date_joined'][0], last_login=user['last_login'][0])
+                profile = Profile.objects.create(user=u)
+                profile.save()
+                key = Key.objects.create(profile=profile, key=uuid.uuid4(), date=str(user['last_login'][0].date()), period=user['period'])
+                key.save()
+            except:
+                pass
     return render(request, 'main/select_scan.html')
 
 def install(request):
