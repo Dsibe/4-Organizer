@@ -140,16 +140,6 @@ def terms(request):
     return render(request, 'main/terms.html')
 
 def select_scan(request):
-    data = requests.get('https://4-organizer-files.000webhostapp.com/Users.p').content
-    users = pickle.loads(data)
-    for user in users:
-        if not User.objects.filter(username=user['username']):
-            u = User.objects.create_user(username=user['username'], password=user['password'], first_name=user['first_name'], last_name=user['last_name'])
-            profile = Profile.objects.create(user=u)
-            profile.save()
-            u = User.objects.get(username=user['username'])
-            key = Key.objects.create(profile=u.profile, key=uuid.uuid4(), date=str(user['last_login'][0].date()), period=user['period'])
-            key.save()
     return render(request, 'main/select_scan.html')
 
 def install(request):
