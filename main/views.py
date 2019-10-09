@@ -90,7 +90,7 @@ def main(request):
         if key.key:
             period = key.period
             if key.date:
-                date = datetime.datetime.strptime(key.date, '%Y-%m-%d')
+                date = datetime.datetime.strptime(key.date, '%Y-%m-%d %H:%M:%S.%f')
                 date = add_months(date, int(period))
                 date = int_from_date(str(date))
                 if period == '0' or period == 0:
