@@ -4,17 +4,6 @@ from django.db.models import Q
 from uuid import uuid4
 import base64
 
-
-
-import datetime
-import pickle
-import requests
-from django.contrib.auth.models import User
-from main.models import *
-from users.models import *
-
-
-
 import datetime
 import calendar
 from django.core.mail import send_mail
