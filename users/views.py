@@ -89,7 +89,7 @@ def profile(request):
         if key_obj.key:
             period = key_obj.period
             if key_obj.date:
-                date = datetime.datetime.strptime(key_obj.date, '%Y-%m-%d %H:%M:%S.%f')
+                date = datetime.datetime.strptime(key_obj.date, '%Y-%m-%d')
                 date = add_months(date, int(period))
                 date = int_from_date(str(date))
         date = f"{str(date)[:4]}-{str(date)[4:6]}-{str(date)[6:]}"
