@@ -85,23 +85,23 @@ def add_months(sourcedate, months):
 
 
 def main(request):
-    keys = Key.objects.all()
-    current_date = int_from_date(str(datetime.datetime.now().date()))
-
-    for key in keys:
-        if key.key:
-            period = key.period
-            if key.date:
-                try:
-                    date = datetime.datetime.strptime(key.date, '%Y-%m-%d %H:%M:%S.%')
-                except:
-                    date = datetime.datetime.strptime(key.date, '%Y-%m-%d')
-                date = add_months(date, int(period))
-                date = int_from_date(str(date))
-                if period == '0' or period == 0:
-                    pass
-                elif current_date >= date:
-                    key.delete()
+    # keys = Key.objects.all()
+    # current_date = int_from_date(str(datetime.datetime.now().date()))
+    #
+    # for key in keys:
+    #     if key.key:
+    #         period = key.period
+    #         if key.date:
+    #             try:
+    #                 date = datetime.datetime.strptime(key.date, '%Y-%m-%d %H:%M:%S.%')
+    #             except:
+    #                 date = datetime.datetime.strptime(key.date, '%Y-%m-%d')
+    #             date = add_months(date, int(period))
+    #             date = int_from_date(str(date))
+    #             if period == '0' or period == 0:
+    #                 pass
+    #             elif current_date >= date:
+    #                 key.delete()
 
     return render(request, 'main/main.html')
 
