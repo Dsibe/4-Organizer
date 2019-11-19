@@ -9,7 +9,9 @@ from users.views import *
 
 urlpatterns = [
     path(r'', start, name="start"),
-    path('key/<str:id>/<str:id2>/<str:license>/<str:username>/', key, name="key"),
+    path('key/<str:id>/<str:id2>/<str:license>/<str:username>/',
+         key,
+         name="key"),
     path('install/', install, name="install"),
     path('select-scan/', select_scan, name="select-scan"),
     path('paypal/', include('paypal.standard.ipn.urls')),
@@ -23,7 +25,11 @@ urlpatterns = [
     path('main/', main, name="main"),
     path('support', support, name="support"),
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(template_name='main/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='main/logout.html'), name='logout'),
+    path('login/',
+         auth_views.LoginView.as_view(template_name='main/login.html'),
+         name='login'),
+    path('logout/',
+         auth_views.LogoutView.as_view(template_name='main/logout.html'),
+         name='logout'),
     path('profile/', profile, name='profile'),
 ]
