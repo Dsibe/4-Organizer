@@ -43,74 +43,73 @@ def add_months(sourcedate, months):
 
 @login_required
 def profile(request):
-    if request.method == "GET":
-        user = request.user
-        user_profile = Profile.objects.get(user=user)
-        key_obj = user_profile.key
-        if key_obj.key == None:
-            period = key_obj.period
-            print(period)
-            host = request.get_host()
+    if request.method != "GET":
+        return
 
-            if period == '1':
-                price = '4.99'
-            elif period == '3':
-                price = '12.99'
-            elif period == '6':
-                price = '19.99'
-            elif period == '12':
-                price = '24.99'
-            elif period == '0':
-                price = '499.99'
+    user = request.user
+    user_profile = Profile.objects.get(user=user)
+    key_obj = user_profile.key
+    if key_obj.key is None:
+        period = key_obj.period
+        print(period)
+        host = request.get_host()
 
-            print(period, price)
-            if period == '0':
-                period_paypal = 'forever'
-            else:
-                period_paypal = period + ' months'
-            paypal_dict = {
-                "business":
-                'abt.company@aol.com',
-                "amount":
-                price,
-                "item_name":
-                f"4-Organizer {period_paypal}",
-                "currency_code":
-                "USD",
-                "invoice":
-                f"{randint(1, 9999999)}",
-                "notify_url":
-                "http://{}{}".format(host, reverse("paypal-ipn")),
-                "return_url":
-                "http://{}{}".format(host, reverse("payment_done")),
-                "cancel_return":
-                "http://{}{}".format(host, reverse("payment_cancelled")),
-                "custom":
-                f"{period}, {user.username}",
-            }
+        if period == '0':
+            price = '499.99'
 
-            # Create the instance.
-            form = PayPalPaymentsForm(initial=paypal_dict)
-            context = {"form": form}
-            return render(request, "main/payment.html", context)
-        user = request.user
-        key_obj = user.profile.key
+        elif period == '1':
+            price = '4.99'
+        elif period == '12':
+            price = '24.99'
+        elif period == '3':
+            price = '12.99'
+        elif period == '6':
+            price = '19.99'
+        print(period, price)
+        period_paypal = 'forever' if period == '0' else period + ' months'
+        paypal_dict = {
+            "business":
+            'abt.company@aol.com',
+            "amount":
+            price,
+            "item_name":
+            f"4-Organizer {period_paypal}",
+            "currency_code":
+            "USD",
+            "invoice":
+            f"{randint(1, 9999999)}",
+            "notify_url":
+            "http://{}{}".format(host, reverse("paypal-ipn")),
+            "return_url":
+            "http://{}{}".format(host, reverse("payment_done")),
+            "cancel_return":
+            "http://{}{}".format(host, reverse("payment_cancelled")),
+            "custom":
+            f"{period}, {user.username}",
+        }
 
-        current_date = int_from_date(str(datetime.datetime.now().date()))
-        if key_obj.key:
-            period = key_obj.period
-            if key_obj.date:
-                date = datetime.datetime.strptime(key_obj.date, '%Y-%m-%d')
-                date = add_months(date, int(period))
-                date = int_from_date(str(date))
-        date = f"{str(date)[:4]}-{str(date)[4:6]}-{str(date)[6:]}"
-        return render(request,
-                      'main/profile.html',
-                      context={
-                          'user': user,
-                          'key_obj': key_obj,
-                          'end_of_license': date
-                      })
+        # Create the instance.
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        context = {"form": form}
+        return render(request, "main/payment.html", context)
+    user = request.user
+    key_obj = user.profile.key
+
+    current_date = int_from_date(str(datetime.datetime.now().date()))
+    if key_obj.key:
+        period = key_obj.period
+        if key_obj.date:
+            date = datetime.datetime.strptime(key_obj.date, '%Y-%m-%d')
+            date = add_months(date, int(period))
+            date = int_from_date(str(date))
+    date = f"{str(date)[:4]}-{str(date)[4:6]}-{str(date)[6:]}"
+    return render(request,
+                  'main/profile.html',
+                  context={
+                      'user': user,
+                      'key_obj': key_obj,
+                      'end_of_license': date
+                  })
 
 
 def register(request, period_selected):
