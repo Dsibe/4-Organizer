@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  {% if payform %}
+  {% else %}
+    <h1 class="text-center">Press this button to pay, please.</h1>
+    <div class="text-center">"{{ form.render }}</div>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<script type="text/javascript">
+function show_key() {
+  obj = document.getElementById('key');
+
+  if (obj) {
+    obj.style = 'margin-top: -10px;';
+    obj.id = 'key_show';
+    btn = document.getElementById('show_key_btn').firstChild;
+    btn.data = 'Hide license key';
+    console.log(obj.class);
+    obj.className = '';
+  } else {
+    obj = document.getElementById('key_show');
+    obj.style = 'margin-top: -10px; filter:blur(2.5px);';
+    obj.id = 'key';
+    btn = document.getElementById('show_key_btn').firstChild;
+    btn.data = 'Show license key';
+    obj.className = 'noselect';
+  }
+
+}
+</script>
+
+<style>
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+  </style>
+
+<h1>Hello, {{ user.first_name|title }}</h1>
+<hr style="width: 28%" align="left">
+
+  <div class="mt-3 card">
+    <h5 class="card-header">Your 4-Organizer license</h5>
+    <div class="card-body">
+      <h5 class="card-title">Expiration date: {{ end_of_license }}</h5>
+      <p class="card-text">Date of activation: {{ key_obj.date }}</p>
+
+
+    <p>Your license key:</p>
+    <div class="noselect" style="margin-top: -10px; filter:blur(2.5px);" id="key">
+      {{ key_obj.key }}
+    </div>
+    <button class="mt-3 btn btn-info col-md-2 col-12" type="button" id="show_key_btn" onclick="show_key()">Show license key</button>
+
+  </div>
+    </div>
+
+
+{% endblock %}
