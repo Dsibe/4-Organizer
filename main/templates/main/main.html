@@ -1,10 +1,14 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block content %}
 
   <body style="background-color: #282c34;">
     <div style="text-align: center;">
-      <img src="http://4-organizer-files.000webhostapp.com/opis2.png" style="width: 100%;">
+      <img src="{% static 'description_1.jpg' %}" style="width: 100%;">
+      <img src="{% static 'description_2.jpg' %}" style="width: 100%;">
+      <img src="{% static 'description_3.jpg' %}" style="width: 100%;">
+      <img src="{% static 'description_4.jpg' %}" style="width: 100%;">
     </div>
     <div style="text-align: center;">
 
@@ -15,6 +19,7 @@
           <li>speeding-up your PC</li>
           <li>removing unwanted/trash files</li>
           <li>cleaning drive</li>
+          <li>removing cache and errors</li>
           <li>speeding-up browsers</li>
           <li>removing privacy vulnerabilities from browsers</li>
           <li>removing empty folders</li>

@@ -1,5 +1,6 @@
 {% block content %}
-  {% load static %}
+{% load static %}
+
   <!DOCTYPE html>
 
   <html lang="en">
@@ -11,7 +12,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+      <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -20,7 +21,7 @@
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-12 col-md-10 mt-1 text-center">
-            <img class="text-center col mt-5" width="5%" src="http://4-organizer-files.000webhostapp.com/0.png">
+            <img class="text-center col mt-5" width="5%" src="{% static '0.png' %}">
             <a class="btn btn-primary col-12 col-md-4 mt-4" style="padding: 10px; font-size: 30px; background-color: #f89a21; border-radius: 10px" href="{% url 'main' %}">4Enter</a>
           </div>
           <div class="col-md-1"></div>

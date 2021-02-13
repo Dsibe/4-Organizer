@@ -4,19 +4,16 @@
 <html lang="en">
 
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-148817240-1"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127103265-3"></script>
-    
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-127103265-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
-    
+
       gtag('config', 'UA-127103265-3');
     </script>
-
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,9 +24,6 @@
         }
       }
       @media only screen and (max-width: 767px) {
-        /* #mbl {
-display: inline!important;
-} */
         #dsk {
           display: none !important;
         }
@@ -40,7 +34,7 @@ display: inline!important;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -164,7 +158,7 @@ display: inline!important;
   <hr style="margin-top: 100px!important;" class="featurette-divider">
   <footer class="container">
     <p class="float-right">{% include 'main/logo.html' %}</p>
-    <p style="color: #4c82c6">© 2018-2019<br>4-Organizer, American Best Technologies Company LLC. All rights reserved.<br>
+    <p style="color: #4c82c6">© 2017-2020<br>4-Organizer, American Best Technologies Company LLC. All rights reserved.<br>
       <a href="{% url 'terms' %}">Terms & Privacy</a>
     </p>
   </footer>

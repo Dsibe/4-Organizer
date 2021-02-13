@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 <legend class="border-bottom mb-3">Sign up</legend>
     <div style="text-align: center;">
-    <img style="width: 50%;" src="http://4-organizer-files.000webhostapp.com/steps.png">
+    <img style="width: 50%;" src="{% static 'steps.png' %}">
     </div>
     <form method="POST">
       {% csrf_token %}
@@ -12,7 +13,7 @@
 
             {{ form|crispy }}
             <div class="text-center">
-            <button type="submit" class="col-12 col-md-2 btn btn-success">Sign up</button>
+            <button type="submit" class="col-12 col-md-2 btn btn-success" style="background-color: #4989cc">Sign up</button>
             </div>
         </fieldset>
 

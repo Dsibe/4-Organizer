@@ -1,0 +1,11 @@
+a = ['http://4-organizer-files.000webhostapp.com/protect.png',
+'http://4-organizer-files.000webhostapp.com/more.png',
+'http://4-organizer-files.000webhostapp.com/main.png',
+'http://4-organizer-files.000webhostapp.com/opis2.png',
+'http://4-organizer-files.000webhostapp.com/0.png',
+'http://4-organizer-files.000webhostapp.com/1.png',
+'http://4-organizer-files.000webhostapp.com/3.png',
+'http://4-organizer-files.000webhostapp.com/6.png',
+'http://4-organizer-files.000webhostapp.com/12.png',
+'http://4-organizer-files.000webhostapp.com/bigboard.png',
+'http://4-organizer-files.000webhostapp.com/steps.png',]

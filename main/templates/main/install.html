@@ -1,8 +1,9 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block content %}
 
-  <h1 class="text-center">Installation instructions:</h1>
+  <h1 class="text-center mb-5" style="color: #4989cc">Installation instructions</h1>
   <ul>
     <li class="mt-2">download and extract 4 Organizer
       <a href="https://www.dropbox.com/s/g142scpou4bwlo5/4-Organizer_Setup.zip?dl=1">from this URL</a>
@@ -10,21 +11,24 @@
     <li class="mt-2">run file "4-Organizer_Install.exe"</li>
 
     <li class="mt-2">if you have Windows 8/8.1/10 you may see this message:</li>
-    <img src="http://4-organizer-files.000webhostapp.com/protect.png">
+    <img style="border-radius: 15px; margin-bottom: 10px; margin-top: 20px;" src="{% static 'protect.png' %}">
     <li class="mt-2">press on "More info" text.</li>
 
     <li class="mt-2">then, press "Run anyway".</li>
-    <img class="mt-2" width="50%" src="http://4-organizer-files.000webhostapp.com/more.png">
-    <li class="mt-2">after short installation, on the Desktop will appear "4-Organizer" shortcut. Run it.</li>
+    <img class="mt-2" style="border-radius: 15px; margin-bottom: 10px; margin-top: 20px;" width="50%" src="{% static 'more.png' %}">
+  </ul>
 
+  <ul class="mt-5 mb-5">
+    <li>after short installation, on the Desktop will appear "4-Organizer" shortcut. Run it.</li>
     <li>you may again see "Windows protected your PC" press "More info" and then "Run anyway".</li>
 
-    <h3 class="mt-3 text-center">4 Organizer is installed! Now you will see it's main window.</h3>
+    <h2 class="mt-5 text-center" style="color: #4989cc">4 Organizer is installed!<br>Now you will see it's main window:</h2>
     <div style="text-align: center">
-      <img class="mt-2" width="70%" src="http://4-organizer-files.000webhostapp.com/main.png">
+      <img class="mt-2" width="70%" src="{% static 'main.png' %}">
     </div>
   </ul>
-  <h4 class="mt-3 text-center">You may also want to read
+
+  <h3 class="mt-5 text-center">You may also want to read
     <a style="color: #4989cc" href="{% url 'select-scan' %}">selecting scan guide.</a>
-  </h4>
+  </h3>
 {% endblock %}
