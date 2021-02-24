@@ -161,6 +161,9 @@ def install(request):
     return render(request, 'main/install.html')
 
 
+def changelog(request):
+    return render(request, 'main/changelog.html')
+
 def decode_str(string, key):
     f = Fernet(key)
     return f.decrypt(string).decode()

@@ -11,6 +11,7 @@ urlpatterns = [
     path('key/<str:id>/<str:id2>/<str:license>/<str:username>/',
          key,
          name="key"),
+    path('changelog/', changelog, name="changelog"),
     path('install/', install, name="install"),
     path('select-scan/', select_scan, name="select-scan"),
     path('paypal/', include('paypal.standard.ipn.urls')),
