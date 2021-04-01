@@ -1,7 +1,7 @@
 pyTelegramBotAPI==3.7.1
 django==2.2.18
 pillow==8.1.1
-cryptography==3.2
+cryptography==3.3.2
 asn1crypto==1.4.0
 certifi==2020.12.5
 cffi==1.14.5
