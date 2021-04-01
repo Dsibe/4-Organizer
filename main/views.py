@@ -18,17 +18,18 @@ import smtplib
 import ssl
 from users.forms import *
 import telebot
+import os
 
-ADMIN_ID = 489460463
-TOKEN = '1442595220:AAEdSkO8wH-784vDjq95xu3XD06naeWXM00'
+
+def debug_env_var(name):
+    with open(rf'D:\libraries\Desktop\Dj\env\Scripts\app\organizer\{name}.txt'
+              ) as file:
+        return file.read()
+
+
+ADMIN_ID = int(os.environ.get('admin_id', debug_env_var('admin_id')))
+TOKEN = os.environ.get('tg_token', debug_env_var('tg_token'))
 bot = telebot.TeleBot(TOKEN)
-
-
-def create_custom_plan(request, months_amount, machines_amount):
-    print('months_amount', months_amount)
-    print('machines_amount', machines_amount)
-    
-    return HttpResponse('123')
 
 
 @csrf_exempt
