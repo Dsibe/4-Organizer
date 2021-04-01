@@ -71,7 +71,6 @@ public_salt = os.environ.get('public_salt', debug_env_var('public_salt'))
 print('public_password', public_password)
 print('public_salt', public_salt)
 
-
 key = get_key(public_password, public_salt)
 public_fernet = Fernet(key)
 
@@ -116,7 +115,6 @@ def is_license_valid(request, args, code_mode=False):
 
     try:
         print('license_key', license_key)
-        print(License.objects.first().key)
 
         license = License.objects.get(key=license_key)
         if license.user.username != username:
@@ -208,7 +206,6 @@ def is_license_valid(request, args, code_mode=False):
 
 
 def license_check(request, args):
-    os.system('cls')
     print('license_check')
 
     result = is_license_valid(request, args)
@@ -223,7 +220,6 @@ def license_check(request, args):
 
 
 def decrypt_code_with_license(request, args):
-    os.system('cls')
     print('decrypt_code_with_license')
 
     try:
@@ -235,7 +231,9 @@ def decrypt_code_with_license(request, args):
         print('\n' * 3)
 
         return HttpResponse(decrypted_code)
-    except:
+    except Exception as e:
+        print('EXC', e)
+        return HttpResponse('error occured')
         pass
 
 
