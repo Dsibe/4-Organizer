@@ -52,10 +52,7 @@ def profile(request):
             if key_obj.is_custom:
                 months_amount = int(period)
 
-                print('months_amount', months_amount)
                 machines_amount = key_obj.max_machines_limit
-
-                print('machines_amount', machines_amount)
 
                 if months_amount > 3:
                     discount_percent = 0.15
@@ -66,20 +63,13 @@ def profile(request):
                 else:
                     discount_percent = 0
 
-                print('discount_percent', discount_percent)
-
                 months_total_sum = (months_amount * 3)
-                print('months_total_sum', months_total_sum)
                 months_total_sum = months_total_sum * (1 - discount_percent)
-                print('months_total_sum', months_total_sum)
 
                 machines_amount = machines_amount * (1 - discount_percent)
-                print('machines_amount', machines_amount)
                 machines_total_sum = months_total_sum * machines_amount
-                print('machines_total_sum', machines_total_sum)
 
                 price = round(machines_total_sum, 2)
-                print('price', price)
                 price = str(price)
             else:
                 price = {
@@ -170,7 +160,6 @@ def register(request, period_selected):
 def register_unique_profile(request, months_amount, machines_amount):
     if request.method == "POST":
         form = UniquePlanUserRegisterForm(request.POST)
-        print(form.errors)
 
         if form.is_valid():
             form.save()

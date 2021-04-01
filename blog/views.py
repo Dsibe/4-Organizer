@@ -11,9 +11,7 @@ def index(request):
     for post in posts:
         img_path = static(post.img_path)
         posts_w_imgs.append((post, img_path))
-    
-    print(posts_w_imgs)
-    
+
     return render(request, 'main/blog.html', context={'posts': posts_w_imgs})
 
 
