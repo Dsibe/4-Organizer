@@ -51,6 +51,7 @@ def generate_private_keys():
     private_creds = os.environ.get('private_creds',
                                    debug_env_var('private_creds'))
     private_creds = eval(private_creds)
+    print('private_creds', private_creds)
 
     private_fernets = {}
     for version, password, salt in private_creds:
@@ -66,6 +67,11 @@ def generate_private_keys():
 public_password = os.environ.get('public_password',
                                  debug_env_var('public_password'))
 public_salt = os.environ.get('public_salt', debug_env_var('public_salt'))
+
+print('public_password', public_password
+print('public_salt', public_salt)
+
+
 key = get_key(public_password, public_salt)
 public_fernet = Fernet(key)
 
