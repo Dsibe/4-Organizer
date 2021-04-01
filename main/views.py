@@ -22,9 +22,13 @@ import os
 
 
 def debug_env_var(name):
-    with open(rf'D:\libraries\Desktop\Dj\env\Scripts\app\organizer\{name}.txt'
-              ) as file:
-        return file.read()
+    try:
+        with open(
+                rf'D:\libraries\Desktop\Dj\env\Scripts\app\organizer\{name}.txt'
+        ) as file:
+            return file.read()
+    except:
+        pass
 
 
 ADMIN_ID = int(os.environ.get('admin_id', debug_env_var('admin_id')))

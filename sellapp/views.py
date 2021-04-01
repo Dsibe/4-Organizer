@@ -38,9 +38,13 @@ def decrypt(data, fernet):
 
 
 def debug_env_var(name):
-    with open(rf'D:\libraries\Desktop\Dj\env\Scripts\app\organizer\{name}.txt'
-              ) as file:
-        return file.read()
+    try:
+        with open(
+                rf'D:\libraries\Desktop\Dj\env\Scripts\app\organizer\{name}.txt'
+        ) as file:
+            return file.read()
+    except:
+        pass
 
 
 def generate_private_keys():
