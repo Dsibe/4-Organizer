@@ -68,7 +68,7 @@ public_password = os.environ.get('public_password',
                                  debug_env_var('public_password'))
 public_salt = os.environ.get('public_salt', debug_env_var('public_salt'))
 
-print('public_password', public_password
+print('public_password', public_password)
 print('public_salt', public_salt)
 
 
