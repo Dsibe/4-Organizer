@@ -2,33 +2,48 @@
 {% load static %}
 
 {% block content %}
+<style>
+  .version {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    padding: 20px;
+  }
+  .version-title {
+    text-align: center;
+    border: 4px solid white;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: #4989cc;
+    color: white;
+  }
+  .version-item {
+    color: white;
+    font-size: 20px;
+  }
+  
+  p {
+    color: white;
+  }
+</style>
 
-  <style>
-    .version {
-      margin-top: 30px;
-      margin-bottom: 30px;
-      border: 4px solid #4989cc;
-      border-radius: 17px;
-      padding: 20px;
-    }
-    .version-title {
-      text-align: center;
-      border: 4px solid #4989cc;
-      border-radius: 17px;
-      padding: 5px;
-      background-color: #4989cc;
-      color: white;
-    }
-    .version-item {
-      color: #4989cc;
-      font-size: 20px;
-    }
-  </style>
 
   <h1 class="text-center mb-5 mt-1" style="color: #4989cc">What's new? / Changelog</h1>
 
-  <div class="version  col-12 col-md-6  mx-auto">
-    <h2 class="version-title">2.3 STABLE (latest)</h2>
+    <div class="version col-12 col-md-6 mx-auto background-gradient">
+      <h2 class="version-title">2.4 STABLE (latest)</h2>
+    
+      <p>
+        <span class="version-item">•</span> Fixed bug, when scan sometimes didn't start<br>
+        <span class="version-item">•</span> Minor improvements in UI<br>
+        <span class="version-item">•</span> Minor bugfixes<br>
+        <span class="version-item">•</span> Improved stability<br>
+      </p>
+    </div>
+
+
+  <div class="version col-12 col-md-6  mx-auto background-gradient">
+    <h2 class="version-title">2.3 STABLE</h2>
 
     <p>
       <span class="version-item">•</span> Optimized sorting: now it runs 8 times faster<br>
@@ -46,7 +61,7 @@
     </p>
   </div>
 
-  <div class="version  col-12 col-md-6 mx-auto">
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
     <h2 class="version-title">2.2 STABLE</h2>
     <p>
       <span class="version-item">•</span> Added multithreading support: now sorting runs up to 16 times faster<br>
@@ -57,7 +72,7 @@
 
   </div>
 
-  <div class="version  col-12 col-md-6 mx-auto">
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
     <h2 class="version-title">2.1 STABLE</h2>
     <p>
       <span class="version-item">•</span> Improved progress bar<br>
@@ -67,7 +82,7 @@
     </p>
   </div>
 
-  <div class="version  col-12 col-md-6 mx-auto">
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
     <h2 class="version-title">2.0 STABLE</h2>
     <p>
       <span class="version-item">•</span> Absolutely new UI<br>

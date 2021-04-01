@@ -5,13 +5,13 @@
 
   <h2 class="text-center">You have logged out</h2>
   <div class="border-top pt-3">
-      <small class="text-muted">
-          <div class="row">
-            <div class="col-md-3"></div>
-          <a class="btn btn-info col-12 col-md-3 mr-3" href="{% url 'login' %}">Login</a>
-          <a class="btn btn-info col-12 col-md-3" href="{% url 'main' %}">Main</a>
-          </div>
-      </small>
+    <small class="text-muted">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <a style="border-radius: 20px; padding: 7px;" class="background-gradient-blue btn btn-info col-12 col-md-3 mr-3" href="{% url 'login' %}">Login</a>
+        <a style="border-radius: 20px; padding: 7px;" class="background-gradient-blue btn btn-info col-12 col-md-3" href="{% url 'main' %}">Main</a>
+      </div>
+    </small>
   </div>
 
 {% endblock %}

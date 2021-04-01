@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+  <style>
+
+    .banner {
+      border-radius: 25px;
+      padding: 7px;
+      color: white;
+      text-align: center;
+    }
+    a {
+      color: white;
+      text-decoration: none !important;
+      border-bottom: solid white 1px;
+    }
+  </style>
+
+  <div class="background-gradient col-12 col-md-9 mt-3 mb-5 mx-auto banner">
+    <h1 class="text-center">Blog</h1>
+  </div>
+
+  {% for post, img_path in posts %}
+
+    <div class="mt-3 card col-12 col-md-6 mx-auto text-center" style="border-radius: 20px; ">
+      <div class="card-body">
+
+        <a href="/blog/post/{{ post.id }}">
+          <div style="padding: 7px;" class="text-center col-12 mx-auto">
+            <img style="width: 100%; border-radius: 20px" src="{{ img_path }}">
+          </div>
+        </a>
+
+        <h2 class="mt-3 card-text">{{ post.title }}</h2>
+
+        <a href="/blog/post/{{ post.id }}" style="border-radius: 25px; padding: 10px;" class="mt-3 btn btn-info col-md-6 col-12 background-gradient">Read</a>
+
+      </div>
+    </div>
+
+  {% endfor %}
+
+{% endblock %}

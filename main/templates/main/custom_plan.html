@@ -1,0 +1,96 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    .banner {
+      border-radius: 25px;
+      padding: 7px;
+      color: white;
+      text-align: center;
+    }
+    a {
+      color: white;
+      text-decoration: none !important;
+      border-bottom: solid white 1px;
+    }
+  </style>
+
+  <script>
+    function createPlan() {
+      monthsAmount = document.getElementById('months-amount').value;
+      machinesAmount = document.getElementById('machines-amount').value;
+      window.location.pathname = `/register-unique-profile/${monthsAmount}/${machinesAmount}`;
+    }
+
+    function countTotal() {
+      monthsAmount = document.getElementById('months-amount').value;
+      machinesAmount = document.getElementById('machines-amount').value;
+
+      discountPercent = 0;
+
+      if (monthsAmount > 3) {
+        discountPercent = 0.15
+      } else if (monthsAmount > 6) {
+        discountPercent = 0.30
+      } else if (monthsAmount > 12) {
+        discountPercent = 0.60
+      }
+
+      console.log('discountPercent', discountPercent);
+
+      monthsTotalSum = (monthsAmount * 3);
+      console.log('monthsTotalSum', monthsTotalSum);
+      monthsTotalSum = monthsTotalSum * (1 - discountPercent);
+      console.log('monthsTotalSum', monthsTotalSum);
+
+      machinesAmount = machinesAmount * (1 - discountPercent);
+
+      console.log('machinesAmount', machinesAmount);
+      machinesTotalSum = monthsTotalSum * machinesAmount;
+      console.log('machinesTotalSum', machinesTotalSum);
+
+      totalSum = machinesTotalSum;
+      console.log('totalSum', totalSum);
+
+      total = document.getElementById('total');
+      total.innerHTML = `Total: $${totalSum.toFixed(2)}`;
+
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      countTotal();
+    })
+  </script>
+
+  <div class="container">
+
+    <div class="background-gradient col-12 col-md-9 mt-5 mb-3 mx-auto banner">
+      <h1 class="text-center">Custom plan</h1>
+    </div>
+
+    <div class="row mt-5">
+
+      <form class="col-12">
+        <div class="form-group">
+          <label for="months-amount">Months amount</label>
+          <input onkeyup="countTotal();" type="number" class="form-control" id="months-amount" aria-describedby="months-help" value="6">
+          <small id="months-help" class="form-text text-muted">How much months license will be valid</small>
+        </div>
+
+        <div class="form-group">
+          <label for="machines-amount">Machines amount</label>
+          <input onkeyup="countTotal();" type="number" class="form-control" id="machines-amount" aria-describedby="machines-help" value="3">
+          <small id="machines-help" class="form-text text-muted">Maximum amount of computers which can use license</small>
+        </div>
+
+        <h1 id="total" class="text-center">Total:</h1>
+
+      </form>
+
+      <button class="mt-4 background-gradient-blue col-12 col-md-6 mx-auto text-center btn btn-primary" style="border-radius: 17px" onclick="createPlan()">Create custom plan</button>
+
+    </div>
+  </div>
+
+{% endblock %}

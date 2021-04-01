@@ -1,0 +1,142 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<script>
+
+  function ban(id) {
+    url = `/ban-machine/${id}`;
+    
+    fetch(url, {}).then(response => response.json()).then(data => {
+      location.reload(true);
+    }).catch((error) => {
+      alert('An error occured, please update page and try again.')
+    });
+  }
+  
+
+  function unban(id) {
+    url = `/unban-machine/${id}`;
+    
+    fetch(url, {}).then(response => response.json()).then(data => {
+      if (data == true) {
+        location.reload(true);
+      } else {
+        alert(data);
+      }
+    }).catch((error) => {
+      alert('An error occured, please update page and try again.')
+    });
+  }
+</script>
+
+<style>
+
+  .banner {
+    border-radius: 25px;
+    padding: 7px;
+    color: white;
+    text-align: center;
+  }
+  a {
+    color: white;
+    text-decoration: none !important;
+    border-bottom: solid white 1px;
+  }
+</style>
+
+<div class="background-gradient col-12 col-md-9 mt-5 mb-5 mx-auto banner">
+    <h1 class="text-center">Machines manager</h1>
+</div>
+
+
+
+  {% for key, allowed_machines, banned_machines in info %}
+
+    <div class="mt-3 card col-12 mx-auto text-center" style="border-radius: 25px; padding: 20px;">
+      <h5 class="card-header background-gradient-blue" style="border-radius: 25px; padding: 20px; margin-top: 20px; color: white;">License
+        {{key}}</h5>
+      <div class="card-body">
+        
+        <h3 class="text-center mt-3">Allowed machines</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Info</th>
+              <th scope="col">Model</th>
+              <th scope="col">Last login</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            {% if allowed_machines %}
+              {% for machine_id, info, model, last_login in allowed_machines %}
+                <tr>
+                  <th>{{ info }}</th>
+                  <td>{{ model }}</td>
+                  <td>{{ last_login }} (UTC)</td>
+                  <td><button class="btn btn-danger" style="border-radius: 17px;" onclick="ban({{ machine_id }});">Ban</button></td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <th>Currently there are no allowed machines</th>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+              </tr>
+            {% endif %}
+            
+            
+
+          </tbody>
+        </table>
+        
+        
+        <h3 class="text-center mt-5">Banned machines</h3>
+        
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Info</th>
+            <th scope="col">Model</th>
+            <th scope="col">Last login</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          {% if banned_machines %}
+            {% for machine_id, info, model, last_login in banned_machines %}
+              <tr>
+                <th>{{ info }}</th>
+                <td>{{ model }}</td>
+                <td>{{ last_login }} (UTC)</td>
+                <td><button class="btn btn-danger" style="border-radius: 17px;" onclick="unban({{ machine_id }});">Unban</button></td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <th>Currently there are no banned machines</th>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+            </tr>
+          {% endif %}
+          
+      
+          
+          
+
+        </tbody>
+      </table>
+        
+    
+
+      </div>
+    </div>
+
+  {% endfor %}
+
+{% endblock %}

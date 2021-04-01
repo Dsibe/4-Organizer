@@ -17,13 +17,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml',
-    'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com'
+    'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com', '192.168.1.100'
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'blog',
+    'sellapp.apps.SellappConfig',
     'users.apps.UsersConfig',
     'paypal.standard.ipn',
     'crispy_forms',
@@ -115,11 +117,11 @@ USE_TZ = True
 X_FRAME_OPTIONS = 'DENY'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-PAYPAL_RECEIVER_EMAIL = 'abt.company@aol.com'
+PAYPAL_RECEIVER_EMAIL = 'abt.company-facilitator@aol.com'
 # PAYPAL_RECEIVER_EMAIL = 'abt.company-facilitator@aol.com'
-# abt.company-buyer@aol.com
+# abt.company-buyer@aol.com testing221
 
-PAYPAL_TEST = False
+PAYPAL_TEST = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
