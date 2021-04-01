@@ -97,7 +97,7 @@ def profile(request):
 
             paypal_dict = {
                 "business":
-                'abt.company-facilitator@aol.com',
+                'abt.company@aol.com',
                 "amount":
                 price,
                 "item_name":

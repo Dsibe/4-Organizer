@@ -117,11 +117,11 @@ USE_TZ = True
 X_FRAME_OPTIONS = 'DENY'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-PAYPAL_RECEIVER_EMAIL = 'abt.company-facilitator@aol.com'
+PAYPAL_RECEIVER_EMAIL = 'abt.company@aol.com'
 # PAYPAL_RECEIVER_EMAIL = 'abt.company-facilitator@aol.com'
-# abt.company-buyer@aol.com testing221
+# abt.company-buyer@aol.com for testing221
 
-PAYPAL_TEST = True
+PAYPAL_TEST = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

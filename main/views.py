@@ -55,7 +55,7 @@ def show_me_the_money(sender, **kwargs):
     #     except:
     #         pass
 
-    if ipn_obj.payment_status == ST_PP_COMPLETED and ipn_obj.business == 'abt.company-facilitator@aol.com':
+    if ipn_obj.payment_status == ST_PP_COMPLETED and ipn_obj.business == 'abt.company@aol.com':
         print("Received payment")
         date = str(datetime.datetime.now().date())
 
