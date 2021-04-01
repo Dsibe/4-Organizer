@@ -22,7 +22,7 @@ def get_key(password, salt):
     kdf = PBKDF2HMAC(algorithm=hashes.SHA256(),
                      length=32,
                      salt=salt,
-                     iterations=100000,
+                     iterations=100_000,
                      backend=default_backend())
     return urlsafe_b64encode(kdf.derive(password))
 
