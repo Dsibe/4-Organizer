@@ -134,14 +134,6 @@ def terms(request):
     return render(request, 'main/terms.html')
 
 
-def select_scan(request):
-    return render(request, 'main/select_scan.html')
-
-
-def install(request):
-    return render(request, 'main/install.html')
-
-
 def changelog(request):
     return render(request, 'main/changelog.html')
 

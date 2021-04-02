@@ -111,7 +111,7 @@
                 </li>
 
                 <li class="nav-item mr-2">
-                  <a class="text-sm-center nav-link" style="color: white; font-weight: 600;" href="{% url 'blog-index' %}">Blog</a>
+                  <a class="text-sm-center nav-link" style="color: white; font-weight: 600;" href="{% url 'blog-index' 'all' %}">Blog</a>
                 </li>
 
                 <li class="mr-2 nav-item dropdown">
@@ -169,6 +169,9 @@
           <li class="nav-item">
             <a class="text-sm-center nav-link" style="font-weight: 600" href="{% url 'contact-us' %}">Contact us</a>
           </li>
+          <li class="nav-item">
+            <a class="text-sm-center nav-link" style="font-weight: 600" href="{% url 'blog-index' 'all' %}">Blog</a>
+          </li>
 
           {% if user.is_authenticated %}
             <li class="nav-item mr-2">
@@ -209,7 +212,7 @@
   <hr style="margin-top: 100px!important;" class="featurette-divider">
   <footer class="container">
     <p class="float-right">{% include 'main/logo.html' %}</p>
-    <p style="color: #4c82c6">© 2017-2020<br>4-Organizer, American Best Technologies Company LLC. All rights reserved.<br>
+    <p style="color: #4c82c6">© 2017-2021<br>4-Organizer, American Best Technologies Company LLC. All rights reserved.<br>
       <a href="{% url 'terms' %}">Terms & Privacy</a>
     </p>
   </footer>

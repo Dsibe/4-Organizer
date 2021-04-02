@@ -7,18 +7,13 @@
 
     .banner {
       border-radius: 25px;
-      padding: 7px;
+      padding: 20px;
       color: white;
       text-align: center;
     }
-    a {
-      color: white;
-      text-decoration: none !important;
-      border-bottom: solid white 1px;
-    }
   </style>
 
-  <div style="padding: 7px;" class="text-center col-12 col-md-9 mx-auto">
+  <div style="padding: 20px;" class="text-center col-12 col-md-9 mx-auto">
     <img style="width: 100%; border-radius: 20px" src="{{ img_path }}">
   </div>
 
@@ -26,6 +21,6 @@
     <h1 class="text-center">{{ post.title }}</h1>
   </div>
 
-  {{ body | safe | linebreaks}}
+  {{ body | safe}}
 
 {% endblock %}

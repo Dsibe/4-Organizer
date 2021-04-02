@@ -25,8 +25,6 @@ urlpatterns = [
          name='license-check'),
     path(r'', start, name="start"),
     path('changelog/', changelog, name="changelog"),
-    path('install/', install, name="install"),
-    path('select-scan/', select_scan, name="select-scan"),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('register/<int:period_selected>/', register, name='register'),
     path('terms/', terms, name='terms'),
