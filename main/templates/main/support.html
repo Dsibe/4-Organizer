@@ -2,38 +2,82 @@
 
 {% block content %}
   <style>
-    a {
-      color: #4989cc;
+    #contact-us-link {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid white;
     }
     a.btn {
       background-color: #4989cc!important;
     }
+    .faq-button {
+      border-radius: 15px;
+      padding: 15px;
+      white-space: normal;
+    }
+    .banner {
+      border-radius: 25px;
+      padding: 40px;
+      color: white;
+    }
+    .big-text {
+      color: #4c82c6;
+      font-size: 40px;
+    }
+    #guides {
+      border-radius: 15px;
+      border: 5px solid #4c82c6;
+    }
+    .guide-link {
+      color: #4c82c6;
+      border-bottom: 1px solid #4c82c6;
+      text-decoration: none!important;
+    }
+    .faq-answer {
+      border-radius: 20px;
+      font-size: 30px;
+      margin-bottom: 50px;
+      border: 5px solid #4c82c6;
+      color: #4c82c6;
+    }
   </style>
-  <h1 class="text-center mb-3">Welcome to 4-Organizer support!</h1>
 
-  <h3 class="text-center mb-3">Have a problem? Feel free to
-    <a href="{% url 'contact-us' %}">contact us!</a>
-  </h3>
-  <hr class="col-12 col-md-4">
-  <h1 class="text-center mt-3">Most popular guides</h1>
-  <h5 class="text-center mb-3">
-    <a href="{% url 'install' %}">How to install 4-Organizer</a>
-  </h5>
-  <h5 class="text-center mb-3">
-    <a href="{% url 'select-scan' %}">How to select scan</a>
-  </h5>
-  <hr class="col-12 col-md-4">
-  <h1 class="text-center mb-3 mt-5">FAQ</h1>
+  <div class="mb-5 col-12 banner background-gradient">
+    <h1 class="text-center mb-3" style="font-size: 60px;">Welcome to 4-Organizer support!</h1>
+
+    <h3 class="text-center mb-3">Have a problem? Feel free to
+      <a href="{% url 'contact-us' %}" id="contact-us-link">contact us!</a>
+    </h3>
+
+  </div>
+
+  <div id="guides" class="col-12 col-md-7 mx-auto">
+    <h1 class="text-center mt-3 mb-3" style="font-size: 40px; color: #4c82c6;">Most popular guides</h1>
+    <h4 class="text-center mb-2">
+      <a class="guide-link" href="{% url 'display-post' 'install' %}">• How to install 4-Organizer on your PC</a>
+    </h4>
+
+    <h4 class="text-center mb-2">
+      <a class="guide-link" href="{% url 'display-post' 'select-scan' %}">• Difference between "Deep" and "Express" scan</a>
+    </h4>
+
+    <h4 class="text-center mb-4">
+      <a class="guide-link" href="{% url 'changelog' %}">• What's new in this update? / Changelog</a>
+    </h4>
+  </div>
+
+  <h1 class="text-center mb-3 mt-5 big-text">FAQ</h1>
 
   <div class="text-center">
     <div>
       <p>
-        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#forever" role="button" aria-expanded="false">
-          Is 'Forever' plan really forever?
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#forever" role="button" aria-expanded="false">
+          Is 'Forever' plan really forever?<br>
         </a>
       </p>
       <div class="collapse mb-3" id="forever">
-        <div class="card card-body">
+        <div class="card card-body faq-answer">
           Yes, it's forever-forever!
         </div>
       </div>
@@ -41,12 +85,133 @@
 
     <div>
       <p>
-        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#license" role="button" aria-expanded="false">
-          Will I receive updates?
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#delete-files" role="button" aria-expanded="false">
+          Can 4-Organizer delete my valuable files?<br>
+        </a>
+      </p>
+      <div class="collapse mb-3" id="delete-files">
+        <div class="card card-body faq-answer">
+          No, that is not possible. 4-Organizer will never delete your files.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#find-key" role="button" aria-expanded="false">
+          Where can I find my license key?
+        </a>
+      </p>
+      <div class="collapse mb-3" id="find-key">
+        <div class="card card-body faq-answer">
+          License key can be found in
+          <a href="{% url 'profile' %}">profile page.</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#machines-manager" role="button" aria-expanded="false">
+          What is "Machines manager"?
+        </a>
+      </p>
+      <div class="collapse mb-3" id="machines-manager">
+        <div class="card card-body faq-answer">
+          "Machines manager" is a special tool which helps you to view, ban and unban machines connected to unique license key. With it, you can ban certain machines from using your license.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#stole-key" role="button" aria-expanded="false">
+          Someone stole my license key! What do I need to do?
+        </a>
+      </p>
+      <div class="collapse mb-3" id="stole-key">
+        <div class="card card-body faq-answer">
+          <a href="{% url 'contact-us' %}">Please contact us</a>
+          as soon as possible. We will help you to create a new key.
+        </div>
+      </div>
+    </div>
+    
+    
+    <div>
+  <p>
+    <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#antivirus" role="button" aria-expanded="false">
+      My antivirus says that 4-Organizer is a trojan / virus, is that true?
+    </a>
+  </p>
+  <div class="collapse mb-3" id="antivirus">
+    <div class="card card-body faq-answer">
+      4-Organizer is not a trojan or a virus. Sometimes antiviruses "think" that 4-Organizer is a trojan. It happens because 4-Organizer sorts your files. While sorting, 4-Organizer moves and sometimes renames files. For antivirus programs, this behaviour is suspicous. So, they "think" that 4-Organizer is a trojan.<br>You can always check it by yourself. For example, upload 4-Organizer's executable to VirusTotal and read the detailed analysis. You will be able to see every single action that program does.
+    </div>
+  </div>
+</div>
+
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#enter-license" role="button" aria-expanded="false">
+          Do I have to enter license data every time?
+        </a>
+      </p>
+      <div class="collapse mb-3" id="enter-license">
+        <div class="card card-body faq-answer">
+          Thankfully, no. You only need to enter license data once.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#select-folders" role="button" aria-expanded="false">
+          Can I exclude certain folders from sorting?<br>
+        </a>
+      </p>
+      <div class="collapse mb-3" id="select-folders">
+        <div class="card card-body faq-answer">
+          Yes, it is possible! When starting scan, deselect folders where sorting is undesired.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#conflicts" role="button" aria-expanded="false">
+          How 4-Organizer solves name conflicts?<br>
+        </a>
+      </p>
+      <div class="collapse mb-3" id="conflicts">
+        <div class="card card-body faq-answer">
+          Suppose you have file "example.txt" in folder "Downloads" and "example.txt" in folder "Desktop". 4-Organizer will rename one of the files. So, after sorting, there will be "example.txt" and "(1) example.txt".
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#empty-folders" role="button" aria-expanded="false">
+          Is it possible that "Remove empty folders" tool will delete my files?<br>
+        </a>
+      </p>
+      <div class="collapse mb-3" id="empty-folders">
+        <div class="card card-body faq-answer">
+          No, that is not possible. This toll will only remove folders which are absolutely empty.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#license" role="button" aria-expanded="false">
+          Will I receive updates?<br>
         </a>
       </p>
       <div class="collapse mb-3" id="license">
-        <div class="card card-body">
+        <div class="card card-body faq-answer">
           You will receive updates as long as your license is valid.
         </div>
       </div>
@@ -54,12 +219,12 @@
 
     <div>
       <p>
-        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#licenseForgot" role="button" aria-expanded="false">
-          I've forgot my license key, what do I have to do?
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#licenseForgot" role="button" aria-expanded="false">
+          I've forgot my license key, what do I have to do?<br>
         </a>
       </p>
       <div class="collapse mb-3" id="licenseForgot">
-        <div class="card card-body">
+        <div class="card card-body faq-answer">
           <a href="{% url 'contact-us' %}">Please contact us.</a>
         </div>
       </div>
@@ -67,12 +232,12 @@
 
     <div>
       <p>
-        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg text-wrap" data-toggle="collapse" href="#tech" role="button" aria-expanded="false">
-          I've got some technical problem, what do I need to do?
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg text-wrap" data-toggle="collapse" href="#tech" role="button" aria-expanded="false">
+          I've got some technical problem, what do I need to do?<br>
         </a>
       </p>
       <div class="collapse mb-3" id="tech">
-        <div class="card card-body">
+        <div class="card card-body faq-answer">
           <a href="{% url 'contact-us' %}">Please contact us</a>
         </div>
       </div>
@@ -80,12 +245,12 @@
 
     <div>
       <p>
-        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle btn-lg" data-toggle="collapse" href="#expires" role="button" aria-expanded="false">
-          What will happen after the license expires?
+        <a class="col-12 col-md-6 btn btn-primary dropdown-toggle faq-button background-gradient-blue btn-lg" data-toggle="collapse" href="#expires" role="button" aria-expanded="false">
+          What will happen after the license expires?<br>
         </a>
       </p>
       <div class="collapse mb-2" id="expires">
-        <div class="card card-body">
+        <div class="card card-body faq-answer">
           4-Organizer will deactivate. If you'll buy another license, you can activate it again.
         </div>
       </div>

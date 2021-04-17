@@ -1,0 +1,121 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .version {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    padding: 20px;
+  }
+  .version-title {
+    text-align: center;
+    border: 4px solid white;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: #4989cc;
+    color: white;
+  }
+  .version-item {
+    color: white;
+    font-size: 20px;
+  }
+  p {
+    color: white;
+  }
+  
+  .more-info-link {
+    text-decoration: none!important;
+  }
+  .more-info-link>h3 {
+    font-weight: 700;
+    border-bottom: 1px solid white;
+    color: white;
+    text-align: center;
+  }
+</style>
+
+
+  <h1 class="text-center mb-5 mt-1" style="color: #4989cc">What's new? / Changelog</h1>
+
+    <div class="version col-12 col-md-6 mx-auto background-gradient">
+      <h2 class="version-title">2.4 STABLE (latest)</h2>
+    
+      <p>
+        <span class="version-item">•</span> Added "Statistics" page, now you can see detailed information about sorting and cleaning<br>
+        <span class="version-item">•</span> Fixed bug, when UI didn't load correctly in certain systems<br>
+        <span class="version-item">•</span> Fixed bug, when scan sometimes didn't start<br>
+        <span class="version-item">•</span> Minor improvements in UI<br>
+        <span class="version-item">•</span> Minor bugfixes<br>
+        <span class="version-item">•</span> Improved stability<br>
+      </p>
+      <div class="col">
+        <a class="more-info-link" href="/blog/post/release-2-4">
+          <h3>More info about this version</h3>
+        </a>
+      </div>
+    </div>
+
+
+  <div class="version col-12 col-md-6  mx-auto background-gradient">
+    <h2 class="version-title">2.3 STABLE</h2>
+
+    <p>
+      <span class="version-item">•</span> Optimized sorting: now it runs 8 times faster<br>
+      <span class="version-item">•</span> Optimized empty folders removal tool: now it runs 4 times faster<br>
+      <span class="version-item">•</span> New: support of customized user folders in Installer<br>
+      <span class="version-item">•</span> Improved overall stability<br>
+      <span class="version-item">•</span> Added many new scan paths to "Deep scan"<br>
+      <span class="version-item">•</span> Installer now works faster<br>
+      <span class="version-item">•</span> Updated loading screen<br>
+      <span class="version-item">•</span> Enhanced button sizes<br>
+      <span class="version-item">•</span> Changed progress bar logic: now it's smoother and more precise<br>
+      <span class="version-item">•</span> Updated "about" page<br>
+      <span class="version-item">•</span> Bugfixes<br>
+      <span class="version-item">•</span> Minor improvements in UI<br>
+    </p>
+  </div>
+
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
+    <h2 class="version-title">2.2 STABLE</h2>
+    <p>
+      <span class="version-item">•</span> Added multithreading support: now sorting runs up to 16 times faster<br>
+      <span class="version-item">•</span> Bugfixes<br>
+      <span class="version-item">•</span> Added new scan paths to "Deep scan"<br>
+      <span class="version-item">•</span> Minor improvements in UI<br>
+    </p>
+
+  </div>
+
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
+    <h2 class="version-title">2.1 STABLE</h2>
+    <p>
+      <span class="version-item">•</span> Improved progress bar<br>
+      <span class="version-item">•</span> Changed assets<br>
+      <span class="version-item">•</span> Added new scan paths to "Deep scan"<br>
+      <span class="version-item">•</span> Created new installer<br>
+    </p>
+  </div>
+
+  <div class="version  col-12 col-md-6 mx-auto background-gradient">
+    <h2 class="version-title">2.0 STABLE</h2>
+    <p>
+      <span class="version-item">•</span> Absolutely new UI<br>
+      <span class="version-item">•</span> Now, there are ~10,000 extensions in the database<br>
+      <span class="version-item">•</span> Extensions database is online<br>
+      <span class="version-item">•</span> New online installer<br>
+      <span class="version-item">•</span> Added many new paths to the "deep scan"<br>
+      <span class="version-item">•</span> Updated "about" page<br>
+      <span class="version-item">•</span> Added progress bar<br>
+    </p>
+    
+    <div class="col">
+      <a class="more-info-link" href="/blog/post/release-2-0">
+        <h3>More info about this version</h3>
+      </a>
+    </div>
+    
+  </div>
+
+{% endblock %}

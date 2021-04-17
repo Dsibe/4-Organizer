@@ -2,13 +2,32 @@
 
 {% block content %}
 
-  <h1 style="text-align: center;">You have successfully bought 4-Organizer!</h1>
-  <h2 style="text-align: center;">Your key is available at your
-    <a href="{% url 'profile' %}">profile</a>
-    page. Please wait up to 15 min to receive it.</h2>
-  <hr class="col-12 col-md-6">
-  <h2 style="text-align: center;">Now, please visit
-    <a href="{% url 'install' %}">installation guide</a>
-  </h2>
+  <style>
+
+    .banner {
+      border-radius: 25px;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    a {
+      color: white;
+      text-decoration: none !important;
+      border-bottom: solid white 1px;
+    }
+  </style>
+
+  <div class="background-gradient col-12 banner">
+
+    <h1 style="margin-bottom: 25px; font-size: 46px;">You have successfully bought 4-Organizer!</h1>
+    <h2>Your key is available at your
+      <a href="{% url 'profile' %}">profile</a>
+      page. Please wait up to 15 min to receive it.</h2>
+    
+    <h2 style="margin-top: 20px;">Now, please visit
+      <a href="{% url 'display-post' 'install' %}">installation guide</a>
+    </h2>
+
+  </div>
 
 {% endblock %}

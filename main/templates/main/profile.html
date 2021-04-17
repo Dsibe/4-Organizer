@@ -1,0 +1,93 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+  <script type="text/javascript">
+    function show_key() {
+      obj = document.getElementById('key');
+
+      if (obj) {
+        obj.style = 'margin-top: -10px;';
+        obj.id = 'key_show';
+        btn = document.getElementById('show_key_btn').firstChild;
+        btn.data = 'Hide license key';
+        console.log(obj.class);
+        obj.className = '';
+      } else {
+        obj = document.getElementById('key_show');
+        obj.style = 'margin-top: -10px; filter:blur(3.2px);';
+        obj.id = 'key';
+        btn = document.getElementById('show_key_btn').firstChild;
+        btn.data = 'Show license key';
+        obj.className = 'noselect';
+      }
+
+    }
+  </script>
+
+  <style>
+    .noselect {
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Safari */
+      -khtml-user-select: none;
+      /* Konqueror HTML */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+    }
+  </style>
+
+  <style>
+
+    .banner {
+      border-radius: 25px;
+      padding: 7px;
+      color: white;
+      text-align: center;
+    }
+    a {
+      color: white;
+      text-decoration: none !important;
+      border-bottom: solid white 1px;
+    }
+  </style>
+
+  <div style="margin-bottom: 65px!important;" class="background-gradient col-12 col-md-9 mt-3 mb-3 mx-auto banner">
+    <h1 class="text-center">Hello,
+      {{ user.first_name|title }}! This is your profile.</h1>
+  </div>
+
+  <div class="row col-12 col-md-6 mx-auto" style="margin-bottom: 65px!important;">
+    <a class="btn btn-primary col-12 mx-auto background-gradient-blue" style="border-radius: 20px; padding: 7px;  margin-bottom: 10px!important;" href="/view-machines">Machines manager</a>
+    <a class="btn btn-primary col-12 mx-auto background-gradient-blue" style="border-radius: 20px; padding: 7px;" href="/update-profile">Change profile</a>
+  </div>
+
+  <div class="background-gradient col-12 col-md-6 mt-5 mb-2 mx-auto banner">
+    <h1>Your license</h1>
+  </div>
+
+  <div class="mt-3 card col-12 col-md-6 mx-auto text-center" style="border-radius: 20px; ">
+    <div class="card-body">
+      <p class="card-text">
+        Maximum machines amount:
+        {{ key_obj.max_machines_limit }}<br>
+        Activation date:
+        {{ key_obj.creation_date }}<br>
+        Expiration date:
+        {{ end_of_license }}<br>
+      </p>
+
+      <h4 class="mt-4 mb-4">License key:</h4>
+      <div class="noselect" style="margin-top: -10px; filter:blur(2.5px);" id="key">{{ key_obj.key }}</div>
+      <button style="border-radius: 25px; padding: 10px;" class="mt-3 btn btn-info col-md-6 col-12 background-gradient-blue" type="button" id="show_key_btn" onclick="show_key()">Show license key</button>
+
+    </div>
+  </div>
+
+{% endblock %}

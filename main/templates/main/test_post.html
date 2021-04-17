@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <style>
+
+    .banner {
+      border-radius: 25px;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+  </style>
+
+  <div style="padding: 20px;" class="text-center col-12 col-md-9 mx-auto">
+    <img style="width: 100%; border-radius: 20px" src="{% static 'Stats.jpg' %}">
+  </div>
+
+  <div class="background-gradient col-12 col-md-9 mt-3 mb-5 mx-auto banner">
+    <h1 class="text-center">Release 2.4: Statistics page</h1>
+  </div>
+
+  <h2 class="text-center col-12 mb-4">
+    A new version of 4-Organizer is ready!</h2>
+
+  <h4 class="col-12">
+    The most important change in this version is the new "Statistics" page.<br>
+    On this page, you can find your personal statistics about sorting and cleaning.<br><br>
+    
+    Available information:<br>
+    • total size of sorted files;<br>
+    • total amount of sorted files;<br>
+    • time saved for you while sorting;<br>
+    • time saved for you instead of searching;<br>
+    • top destination folder by frequency;<br>
+    • top destination folder by size;<br>
+    • top extensions by frequency;<br>
+    • top extensions by total size;<br>
+    • amount of conflicts resolved;<br>
+    • total size of rubbish files deleted;<br>
+    • amount of rubbish files deleted;<br>
+    • amount of empty folders deleted.<br><br>
+
+    Other changes in this version include:<br>
+    • fixed bug, when UI didn't load correctly in certain systems;<br>
+    • fixed bug, when scan sometimes didn't start;<br>
+    • minor improvements in UI;<br>
+    • minor bug fixes;<br>
+    • improved stability.<br><br>
+
+    Below, you can find a screenshot of the new statistics page<br>
+  </h4>
+
+  <div style="padding: 20px;" class="text-center col-12 col-md-8 mx-auto">
+    <img style="width: 100%; border-radius: 20px" src="{% static 'stats-2-4.jpg' %}">
+  </div>
+
+{% endblock %}

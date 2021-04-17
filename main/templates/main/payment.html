@@ -4,8 +4,40 @@
 {% block content %}
   {% if payform %}
   {% else %}
-    <h1 class="text-center">Press this button to pay, please.</h1>
-    <div class="text-center">"{{ form.render }}</div>
+    <style>
+      .info {
+        color: #0056b3;
+        font-weight: bold;
+      }
+    </style>
+
+    <h1 class="text-center">Press "Buy now" button to pay, please.</h1>
+    <hr class="col-12 col-md-6 text-center mx-auto mt-4">
+
+    <h5 class="text-center">• 4-Organizer
+      <span class="info">doesn't have access</span>
+      to any of your card information.</h5>
+    <h5 class="text-center">• Payment is processed with <span class="info">PayPal.</span></h5>
+    <h5 class="text-center">• It's absolutely <span class="info">secure.</span></h5>
+
+    <hr class="col-12 col-md-6 text-center mx-auto mb-4">
+
+    <h3 class="text-center">Payment details</h3>
+    <h5 class="text-center">Price:
+      <span class="info">{{ price }}
+        USD</span>
+    </h5>
+    <h5 class="text-center">License period:
+      <span class="info">{{ period }}</span>
+    </h5>
+    <h5 class="text-center">Machines amount:
+      <span class="info">{{ max_machines_limit }}</span>
+    </h5>
+    
+    
+    
+
+    <div class="text-center mt-5">{{ form.render }}</div>
   {% endif %}
 
 {% endblock %}

@@ -10,20 +10,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 try:
     SECRET_KEY = os.environ['SECRET_KEY']
 except KeyError:
-    SECRET_KEY = '*r2tx+7e320$+^fv9g6f^*d8a+rbyu@xof(u+oz@3ve)m3d7^g'
+    SECRET_KEY = '*r2tx+73330$+^fv9g6f^*d8a+rbyu@xof(u+oz@3ve)m3d7^g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1', '.ngrok.io', '.herokuapp.com', '4-Organizer.ml',
-    'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com'
+    'www.4-organizer.ml', '4organizer.com', 'www.4organizer.com', '192.168.1.100'
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
     'main.apps.MainConfig',
+    'blog',
+    'sellapp.apps.SellappConfig',
     'users.apps.UsersConfig',
     'paypal.standard.ipn',
     'crispy_forms',
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,21 +115,12 @@ USE_L10N = True
 USE_TZ = True
 
 X_FRAME_OPTIONS = 'DENY'
-# CSRF_USE_SESSIONS = True
-# SESSION_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.yahoo.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mail.4_organizer@yahoo.com'
-
-# EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
-EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 PAYPAL_RECEIVER_EMAIL = 'abt.company@aol.com'
+# PAYPAL_RECEIVER_EMAIL = 'abt.company-facilitator@aol.com'
+# abt.company-buyer@aol.com for testing221
+
 PAYPAL_TEST = False
 
 # Static files (CSS, JavaScript, Images)
@@ -136,6 +130,11 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'login'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticroot')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

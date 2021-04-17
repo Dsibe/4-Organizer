@@ -1,21 +1,32 @@
 from django.urls import path, include
 from django.contrib import admin
-from django.urls import path
 from django.urls import reverse
 from main.views import *
 from django.contrib.auth import views as auth_views
 from users.models import *
 from users.views import *
+import sellapp.views as sell_views
+import blog.views as blog_views
 
 urlpatterns = [
+    path('blog/', include('blog.urls')),
+    path('register-unique-profile/<int:months_amount>/<int:machines_amount>/',
+         register_unique_profile),
+    path('custom-plan/', custom_plan, name='custom-plan'),
+    path('update-profile/', update_profile, name='update_profile'),
+    path('unban-machine/<int:machine_id>/', sell_views.unban_machine),
+    path('ban-machine/<int:machine_id>/', sell_views.ban_machine),
+    path('view-machines/', sell_views.view_machines, name='view_machines'),
+    path('decrypt-code-with-license/<path:args>',
+         sell_views.decrypt_code_with_license,
+         name='decrypt-code-with-license'),
+    path('license-check/<path:args>',
+         sell_views.license_check,
+         name='license-check'),
     path(r'', start, name="start"),
-    path('key/<str:id>/<str:id2>/<str:license>/<str:username>/',
-         key,
-         name="key"),
-    path('install/', install, name="install"),
-    path('select-scan/', select_scan, name="select-scan"),
+    path('changelog/', changelog, name="changelog"),
     path('paypal/', include('paypal.standard.ipn.urls')),
-    path('register/<str:period_selected>/', register, name='register'),
+    path('register/<int:period_selected>/', register, name='register'),
     path('terms/', terms, name='terms'),
     path('mail/', mail),
     path('payment-done/', payment_done, name='payment_done'),
