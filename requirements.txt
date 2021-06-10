@@ -1,5 +1,5 @@
 pyTelegramBotAPI==3.7.1
-django==2.2.20
+django==2.2.24
 pillow==8.1.1
 cryptography==3.3.2
 asn1crypto==1.4.0
