@@ -8,9 +8,19 @@
       <legend class="border-bottom mb-4">Contact us</legend>
       {{ form|crispy }}
     </fieldset>
-    <div class="form-group" style="text-align: center;">
 
+    <div class="form-group" style="text-align: center;">
       <button class="background-gradient-blue col col-md-2 btn btn-success mt-2" style="border-radius: 20px; padding: 7px;" type="submit">Send</button>
     </div>
+  </form>
 
-  {% endblock %}
+  <div class="mt-5 row col-12 col-md-6 mx-auto" style="border: solid 5px #5079bd; border-radius: 20px; padding: 20px;">
+    <div class="col-12">
+      <h2 class="text-center">This business is available for sale.</h2>
+      <h5 class="text-center">Due to the change of place of residence.</h5>
+      <h5 class="text-center">Contact us for more details.</h5>
+      <h5 class="text-center" style="color: #5079bd">Price: $49 999</h5>
+    </div>
+  </div>
+
+{% endblock %}
